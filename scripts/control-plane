@@ -25,6 +25,7 @@ COMMANDS = {
     "doctor": SCRIPTS_DIR / "doctor",
     "git-status": SCRIPTS_DIR / "git-status",
     "modules": SCRIPTS_DIR / "modules",
+    "plan": SCRIPTS_DIR / "plan",
 }
 
 
@@ -38,6 +39,7 @@ def usage() -> str:
         "  doctor      Run authentication doctor checks\n"
         "  git-status  Show Git repository status\n"
         "  modules     List Atlas Control Plane modules\n"
+        "  plan        Generate an execution plan for an intent\n"
         "  help        Show this help text\n"
     )
 

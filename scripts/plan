@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+"""Atlas Planner CLI."""
+
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from atlas.planner.planner import AtlasPlanner
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: control-plane plan <intent>")
+        sys.exit(1)
+
+    intent_str = sys.argv[1]
+    planner = AtlasPlanner()
+
+    try:
+        plan = planner.create_plan(intent_str)
+    except ValueError as e:
+        print(f"Error: {e}")
+        sys.exit(1)
+
+    print("Atlas Planner\n")
+    print("Intent")
+    print(f"\n{plan.intent}\n")
+    
+    print("Execution Plan")
+    for idx, step in enumerate(plan.execution_order, 1):
+        print(f"\n{idx} {step}")
+    print()
+    
+    print("Risk")
+    print(f"\n{plan.risk_level}\n")
+    
+    print("Approval")
+    app_req = "Required before execution" if plan.approval_required else "Auto-approved"
+    print(f"\n{app_req}")
+
+if __name__ == "__main__":
+    main()
