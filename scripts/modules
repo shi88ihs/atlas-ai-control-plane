@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+"""List registered modules in the Atlas Control Plane."""
+
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from atlas.core import registry
+
+def main():
+    print("Atlas Modules\n")
+    for mod in registry.list_modules():
+        print(f"{mod.name:<13} {mod.status}")
+
+if __name__ == "__main__":
+    main()

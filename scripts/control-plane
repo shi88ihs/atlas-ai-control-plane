@@ -24,6 +24,7 @@ COMMANDS = {
     "report": SCRIPTS_DIR / "report",
     "doctor": SCRIPTS_DIR / "doctor",
     "git-status": SCRIPTS_DIR / "git-status",
+    "modules": SCRIPTS_DIR / "modules",
 }
 
 
@@ -36,6 +37,7 @@ def usage() -> str:
         "  report      Write markdown reports\n"
         "  doctor      Run authentication doctor checks\n"
         "  git-status  Show Git repository status\n"
+        "  modules     List Atlas Control Plane modules\n"
         "  help        Show this help text\n"
     )
 
