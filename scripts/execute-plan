@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+"""Atlas Executive CLI wrapper to generate a workflow from an intent."""
+
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from atlas.planner.planner import AtlasPlanner
+from atlas.executive.executive import AtlasExecutive
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: control-plane execute-plan <intent>")
+        sys.exit(1)
+
+    intent_str = sys.argv[1]
+    planner = AtlasPlanner()
+    executive = AtlasExecutive()
+
+    try:
+        plan = planner.create_plan(intent_str)
+        workflow = executive.generate_workflow(plan)
+    except ValueError as e:
+        print(f"Error: {e}")
+        sys.exit(1)
+
+    print("Intent\n")
+    print(f"{workflow.intent}\n")
+    
+    print("Workflow\n")
+    for step in workflow.steps:
+        print(f"Step {step.step_number}\n")
+        print(f"{step.module}\n")
+        print(f"{step.objective}\n")
+        print("Approval:")
+        if step.approval_required:
+            print("Required before publishing\n")
+        else:
+            print("Not required\n")
+            
+    print("Overall Risk\n")
+    print(f"{workflow.risk}\n")
+    
+    print("Estimated Duration\n")
+    print(f"{workflow.estimated_duration}")
+
+if __name__ == "__main__":
+    main()

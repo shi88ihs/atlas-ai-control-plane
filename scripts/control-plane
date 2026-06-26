@@ -26,6 +26,7 @@ COMMANDS = {
     "git-status": SCRIPTS_DIR / "git-status",
     "modules": SCRIPTS_DIR / "modules",
     "plan": SCRIPTS_DIR / "plan",
+    "execute-plan": SCRIPTS_DIR / "execute-plan",
 }
 
 
@@ -33,14 +34,15 @@ def usage() -> str:
     return (
         "control-plane <command>\n\n"
         "Commands:\n"
-        "  status      Render terminal status output\n"
-        "  collect     Print structured JSON status\n"
-        "  report      Write markdown reports\n"
-        "  doctor      Run authentication doctor checks\n"
-        "  git-status  Show Git repository status\n"
-        "  modules     List Atlas Control Plane modules\n"
-        "  plan        Generate an execution plan for an intent\n"
-        "  help        Show this help text\n"
+        "  status        Render terminal status output\n"
+        "  collect       Print structured JSON status\n"
+        "  report        Write markdown reports\n"
+        "  doctor        Run authentication doctor checks\n"
+        "  git-status    Show Git repository status\n"
+        "  modules       List Atlas Control Plane modules\n"
+        "  plan          Generate an execution plan for an intent\n"
+        "  execute-plan  Generate an execution workflow from a plan\n"
+        "  help          Show this help text\n"
     )
 
 
