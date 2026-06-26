@@ -23,6 +23,7 @@ COMMANDS = {
     "collect": SCRIPTS_DIR / "collect",
     "report": SCRIPTS_DIR / "report",
     "doctor": SCRIPTS_DIR / "doctor",
+    "git-status": SCRIPTS_DIR / "git-status",
 }
 
 
@@ -30,11 +31,12 @@ def usage() -> str:
     return (
         "control-plane <command>\n\n"
         "Commands:\n"
-        "  status   Render terminal status output\n"
-        "  collect  Print structured JSON status\n"
-        "  report   Write markdown reports\n"
-        "  doctor   Run authentication doctor checks\n"
-        "  help     Show this help text\n"
+        "  status      Render terminal status output\n"
+        "  collect     Print structured JSON status\n"
+        "  report      Write markdown reports\n"
+        "  doctor      Run authentication doctor checks\n"
+        "  git-status  Show Git repository status\n"
+        "  help        Show this help text\n"
     )
 
 

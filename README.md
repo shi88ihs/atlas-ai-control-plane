@@ -1,6 +1,6 @@
-# Control Plane Workspace
+# Atlas Control Plane Workspace
 
-This directory is the user-space control plane for Hermes runtime operations. It is a working area for structured inventory, notes, logs, scripts, templates, and reports that support runtime automation without changing host-level configuration.
+This directory is the user-space Atlas Control Plane for operations and infrastructure management. It is a working area for structured inventory, notes, logs, scripts, templates, and reports that support runtime automation without changing host-level configuration.
 
 ## Directory guide
 
@@ -57,7 +57,7 @@ This directory is the user-space control plane for Hermes runtime operations. It
 ## Boundary: container vs AWS host
 
 - The AWS host is the machine running the Hermes runtime and its supporting infrastructure.
-- The control-plane workspace is user-space data under `/opt/data/home/control-plane/`.
+- The Atlas Control Plane workspace is user-space data under `/opt/data/home/control-plane/`.
 - Files here should describe, coordinate, or support runtime work — not alter host networking, SSH, Tailscale, Docker, firewalling, gateway processes, or package state.
 - If a task requires host-level change, it must be handled separately and explicitly; this workspace is not the place to make those changes.
 
@@ -68,7 +68,7 @@ This directory is the user-space control plane for Hermes runtime operations. It
 - Sensitive material must be kept out of this tree unless a task explicitly requires a secure handling path.
 - The workspace currently has no automation beyond the directory structure and documentation.
 
-## Control plane CLI wrapper
+## Atlas Control Plane CLI wrapper
 
 The status engine now has a simple user-space wrapper at:
 

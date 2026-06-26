@@ -3,7 +3,7 @@
 ## Approved maintenance workflow
 1. Identify the target system, scope, and boundary.
 2. Gather read-only evidence first.
-3. Record the change intent in the control plane.
+3. Record the change intent in the Atlas Control Plane.
 4. Make only the minimum approved change.
 5. Verify the result with a post-change check.
 6. Capture a short report in `/opt/data/home/control-plane/reports/`.
@@ -30,7 +30,7 @@
 ## Docker policy
 - Docker is not the canonical Hermes runtime.
 - The retired duplicate Docker deployment must not be revived as the primary control path.
-- Docker may exist as an observed host capability, but control-plane documentation should treat it as non-canonical for Hermes runtime ownership.
+- Docker may exist as an observed host capability, but Atlas Control Plane documentation should treat it as non-canonical for Hermes runtime ownership.
 - Any future Docker use must be explicitly documented as a separate boundary with its own ownership and restart rules.
 
 ## systemd policy

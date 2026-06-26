@@ -1,6 +1,6 @@
-# Control Plane Status Engine
-
-The status engine is the first reusable control-plane status layer.
+# Atlas Control Plane Status Engine
+ 
+ The status engine is the first reusable Atlas Control Plane status layer.
 It is intentionally read-only and split into three parts:
 
 - **Collector** — gathers structured state

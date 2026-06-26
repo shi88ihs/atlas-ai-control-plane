@@ -20,7 +20,7 @@
 - Installation: `/home/ec2-user/hermes-agent`
 - Configuration home: `/home/ec2-user/.hermes`
 - Gateway logs: `~/.hermes/logs/gateway.log`
-- Control plane workspace: `/opt/data/home/control-plane`
+- Atlas Control Plane workspace: `/opt/data/home/control-plane`
 - Reports directory: `/opt/data/home/control-plane/reports`
 
 ## OpenClaw

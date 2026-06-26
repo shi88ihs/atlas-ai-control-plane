@@ -1,7 +1,7 @@
 # Roadmap
 
 ## Phase 5
-- Build a minimal, durable control-plane foundation for fleet operations.
+- Build a minimal, durable Atlas Control Plane foundation for fleet operations.
 - Keep the phase documentation-first and read-only by default.
 
 ## Milestones
@@ -25,4 +25,4 @@
   - Prefer safe, reversible actions and explicit evidence.
 - Automation library
   - Build reusable scripts and playbooks for common read-only operations.
-  - Keep the library in user-space and versioned in the control plane.
+  - Keep the library in user-space and versioned in the Atlas Control Plane.

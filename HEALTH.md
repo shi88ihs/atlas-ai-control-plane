@@ -1,7 +1,7 @@
 # Health Report Format
 
 ## Purpose
-A health report should provide a consistent snapshot of the control plane and runtime state without requiring guesswork.
+A health report should provide a consistent snapshot of the Atlas Control Plane and runtime state without requiring guesswork.
 
 ## Required sections
 - Hermes
