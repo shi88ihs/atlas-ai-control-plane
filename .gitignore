@@ -1,0 +1,16 @@
+logs/
+backups/
+sessions/
+pycache/
+__pycache__/
+*.pyc
+*.db
+*.db-wal
+*.db-shm
+.env
+auth.json
+*.pem
+*.key
+reports/health-report-*.md
+reports/latest-health-report.md
+reports/doctor-*.md

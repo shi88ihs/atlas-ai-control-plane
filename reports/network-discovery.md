@@ -1,0 +1,69 @@
+# Network Discovery
+
+## Interfaces
+
+Observed interfaces:
+
+- `lo` — `127.0.0.1/8`, `::1/128`
+- `ens5` — `172.31.0.144/20`, IPv6 link-local present
+- `docker0` — `172.17.0.1/16`
+- `br-9d2fd27211b3` — `172.19.0.1/16`
+- `br-9f7c7db89280` — `172.18.0.1/16`
+- `br-88f71d868620` — `172.20.0.1/16`
+- `tailscale0` — `100.98.189.64/32`, `fd7a:115c:a1e0::bc35:bd41/128`
+
+## Routes
+
+Default and local routes observed:
+
+- Default route via `172.31.0.1` on `ens5`
+- Local VPC route `172.31.0.0/20` on `ens5`
+- Docker bridge routes for `172.17.0.0/16`, `172.18.0.0/16`, `172.19.0.0/16`, `172.20.0.0/16`
+
+## DNS configuration
+
+`/etc/resolv.conf` contains:
+
+- `169.254.169.253`
+- `1.1.1.1`
+- `8.8.8.8`
+
+## Listening services
+
+Notable listeners from `ss -ltnup`:
+
+- `127.0.0.1:18789` — OpenClaw gateway listener
+- `127.0.0.1:9119` — Hermes-related listener
+- `127.0.0.1:22022` — local SSH tunnel endpoint for the local PC path seen earlier in the session
+- `0.0.0.0:22` and `[::]:22` — host SSH server
+- `100.98.189.64:443` and `[fd7a:115c:a1e0::bc35:bd41]:443` — tailnet HTTPS listener
+- Docker-published application ports including `3000`, `3012`, `8080`, `8081`, `34573`, `37079`, `42741`, `51753`, and `5678`
+
+## localhost services
+
+Verified localhost reachability:
+
+- `http://127.0.0.1:18789` is listening
+- `http://127.0.0.1:5678` is listening
+- `http://127.0.0.1:22022` is listening
+
+## Outbound Internet access
+
+Verified working:
+
+- `https://example.com` returned `200`
+- `https://check.torproject.org` returned `200`
+
+## IMDS status
+
+- AWS Instance Metadata Service (IMDS): **Not Tested (Approval Required)**
+
+## Tailscale presence
+
+- `tailscale0` is present and configured
+- Tailscale CLI exists on the runtime path
+
+## Notes
+
+- No network settings were changed.
+- This is a read-only snapshot only.

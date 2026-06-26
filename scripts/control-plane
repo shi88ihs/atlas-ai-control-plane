@@ -1,0 +1,103 @@
+#!/usr/bin/env python3
+"""Control plane CLI wrapper for the status engine.
+
+Supports:
+  control-plane status
+  control-plane collect
+  control-plane report
+  control-plane doctor
+  control-plane help
+"""
+
+from __future__ import annotations
+
+import os
+import subprocess
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+SCRIPTS_DIR = ROOT / "scripts"
+COMMANDS = {
+    "status": SCRIPTS_DIR / "status",
+    "collect": SCRIPTS_DIR / "collect",
+    "report": SCRIPTS_DIR / "report",
+    "doctor": SCRIPTS_DIR / "doctor",
+}
+
+
+def usage() -> str:
+    return (
+        "control-plane <command>\n\n"
+        "Commands:\n"
+        "  status   Render terminal status output\n"
+        "  collect  Print structured JSON status\n"
+        "  report   Write markdown reports\n"
+        "  doctor   Run authentication doctor checks\n"
+        "  help     Show this help text\n"
+    )
+
+
+def fail(message: str, exit_code: int = 1) -> int:
+    print(f"control-plane: {message}", file=sys.stderr)
+    return exit_code
+
+
+def validate_environment() -> tuple[bool, str | None]:
+    try:
+        cwd = Path.cwd()
+    except (FileNotFoundError, OSError):
+        return False, "current working directory is invalid or unavailable"
+
+    if not cwd.exists() or not cwd.is_dir():
+        return False, "current working directory is invalid or unavailable"
+
+    if not ROOT.exists() or not ROOT.is_dir():
+        return False, f"control-plane root not found: {ROOT}"
+
+    if not SCRIPTS_DIR.exists() or not SCRIPTS_DIR.is_dir():
+        return False, f"scripts directory not found: {SCRIPTS_DIR}"
+
+    return True, None
+
+
+def resolve_command(name: str) -> Path | None:
+    return COMMANDS.get(name)
+
+
+def run_child(script: Path, argv: list[str]) -> int:
+    if not script.exists():
+        return fail(f"missing script: {script}")
+    if not script.is_file():
+        return fail(f"script path is not a file: {script}")
+    if not os.access(script, os.X_OK):
+        return fail(f"script is not executable: {script}")
+
+    proc = subprocess.run([str(script), *argv], cwd=str(ROOT), text=True, capture_output=True)
+    if proc.stdout:
+        sys.stdout.write(proc.stdout)
+    if proc.stderr:
+        sys.stderr.write(proc.stderr)
+    return proc.returncode
+
+
+def main(argv: list[str]) -> int:
+    ok, error = validate_environment()
+    if not ok:
+        return fail(error or "environment validation failed")
+
+    if len(argv) < 2 or argv[1] in {"help", "-h", "--help"}:
+        print(usage(), end="")
+        return 0
+
+    command = argv[1]
+    script = resolve_command(command)
+    if script is None:
+        print(usage(), end="", file=sys.stderr)
+        return fail(f"unknown command: {command}")
+
+    return run_child(script, argv[2:])
+
+
+if __name__ == "__main__":
+    raise SystemExit(main(sys.argv))

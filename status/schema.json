@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://control-plane.local/schema/status-engine-1.json",
+  "title": "Control Plane Status Engine Report",
+  "type": "object",
+  "required": ["schema_version", "generated_at", "host", "overall", "components"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "host": {
+      "type": "object",
+      "required": ["hostname", "kernel", "operating_system", "current_user", "uptime", "load_average"],
+      "additionalProperties": false,
+      "properties": {
+        "hostname": {"type": "string"},
+        "kernel": {"type": "string"},
+        "operating_system": {"type": "string"},
+        "current_user": {"type": "string"},
+        "uptime": {
+          "type": "object",
+          "required": ["uptime_seconds", "uptime_human"],
+          "additionalProperties": true,
+          "properties": {
+            "uptime_seconds": {"type": "integer", "minimum": 0},
+            "uptime_human": {"type": "string"}
+          }
+        },
+        "load_average": {
+          "type": "object",
+          "required": ["load_average"],
+          "additionalProperties": true,
+          "properties": {
+            "load_average": {
+              "type": "array",
+              "items": {"type": "number"},
+              "minItems": 0,
+              "maxItems": 3
+            }
+          }
+        }
+      }
+    },
+    "overall": {"$ref": "#/$defs/componentRecord"},
+    "components": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/componentRecord"}
+    }
+  },
+  "$defs": {
+    "componentRecord": {
+      "type": "object",
+      "required": ["component", "status", "severity", "message", "details", "timestamp"],
+      "additionalProperties": false,
+      "properties": {
+        "component": {"type": "string"},
+        "status": {"type": "string"},
+        "severity": {
+          "type": "string",
+          "enum": ["info", "warning", "critical", "unknown"]
+        },
+        "message": {"type": "string"},
+        "details": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}
