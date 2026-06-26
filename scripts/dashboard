@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+"""Atlas Mission Control Dashboard entry point."""
+
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from atlas.dashboard.dashboard import render_dashboard
+
+if __name__ == "__main__":
+    render_dashboard()

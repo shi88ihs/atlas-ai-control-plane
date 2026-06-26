@@ -96,7 +96,10 @@ def main(argv: list[str]) -> int:
     if not ok:
         return fail(error or "environment validation failed")
 
-    if len(argv) < 2 or argv[1] in {"help", "-h", "--help"}:
+    if len(argv) < 2:
+        return run_child(SCRIPTS_DIR / "dashboard", [])
+
+    if argv[1] in {"help", "-h", "--help"}:
         print(usage(), end="")
         return 0
 
