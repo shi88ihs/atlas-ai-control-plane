@@ -27,6 +27,7 @@ COMMANDS = {
     "modules": SCRIPTS_DIR / "modules",
     "plan": SCRIPTS_DIR / "plan",
     "execute-plan": SCRIPTS_DIR / "execute-plan",
+    "simulate": SCRIPTS_DIR / "simulate",
 }
 
 
@@ -42,6 +43,7 @@ def usage() -> str:
         "  modules       List Atlas Control Plane modules\n"
         "  plan          Generate an execution plan for an intent\n"
         "  execute-plan  Generate an execution workflow from a plan\n"
+        "  simulate      Simulate the impact of an execution workflow\n"
         "  help          Show this help text\n"
     )
 

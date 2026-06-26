@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+"""Atlas Simulator CLI wrapper."""
+
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from atlas.simulator.simulator import AtlasSimulator
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: control-plane simulate <intent>")
+        sys.exit(1)
+
+    intent_str = sys.argv[1]
+    simulator = AtlasSimulator()
+
+    try:
+        res = simulator.simulate(intent_str)
+    except ValueError as e:
+        print(f"Error: {e}")
+        sys.exit(1)
+
+    print("Atlas Simulator\n")
+    print("Intent")
+    print(f"\n{res['intent']}\n")
+    
+    print("Workflow generated successfully. Simulating execution...\n")
+    
+    print("Modules Involved")
+    for m in res['modules']:
+        print(f"  - {m}")
+        
+    print("\nFiles Touched")
+    if not res['files_touched']:
+        print("  - None")
+    else:
+        for f in res['files_touched']:
+            print(f"  - {f}")
+            
+    print("\nServices Affected")
+    if not res['services_affected']:
+        print("  - None")
+    else:
+        for s in res['services_affected']:
+            print(f"  - {s}")
+            
+    print("\nRisk Level")
+    print(f"\n{res['risk_level']}\n")
+    
+    print("Approval Requirements")
+    app_req = "Required before execution" if res['approval_required'] else "Auto-approved"
+    print(f"\n{app_req}\n")
+    
+    print("Rollback Strategy")
+    print(f"\n{res['rollback_strategy']}\n")
+    
+    print("Simulation complete. No actions performed.")
+
+if __name__ == "__main__":
+    main()

@@ -11,3 +11,5 @@ class Intent(Enum):
     STABILIZE = "stabilize"
     DIAGNOSE = "diagnose"
     RELEASE = "release"
+    ONBOARD_DESKTOP = "onboard-desktop"
+    UPDATE_MACHINE = "update-machine"
