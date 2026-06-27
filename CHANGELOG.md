@@ -19,21 +19,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Read-only diagnostics via Atlas Doctor.
 
 ## [0.9.1] - 2026-06-27
+**Infrastructure Stabilization Release**
+
+This release hardens the deployment environment and prepares the final production web cutover. For full details, see the [v0.9.1 Release Notes](docs/releases/v0.9.1.md).
+
 ### Added
-- **Infrastructure Stabilization Release**
-- Mission Control dashboard.
-- Atlas documentation restructure.
+- Mission Control dashboard foundation.
 - AWS Manager skill draft.
 - Memory optimization profile.
 - Backup and release workflow.
-- Production web stack prepared.
-- Vaultwarden migration prepared.
-- Caddy reverse proxy configuration prepared.
+- Production web stack (Caddy, Vaultwarden, static site) prepared.
+
+### Changed
+- Atlas documentation restructured to portfolio-grade open-source standards.
+- Legacy Docker runtimes deprecated in favor of native systemd user services.
+- Tightened GitOps security boundaries and `.gitignore` policies.
 
 ### Known Outstanding Work
-- Final Caddy production cutover.
+- Final Caddy production cutover (pending DNS).
 - HTTPS certificate verification.
-- Public website deployment.
+- Public website deployment completion.
 - Vultr retirement after monitoring.
 
 ## [0.9.0] - 2026-06-27
