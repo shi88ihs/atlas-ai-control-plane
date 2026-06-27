@@ -21,7 +21,7 @@ As approved, the conflicting Docker-based Hermes installation was successfully d
 - [x] **Primary Gateway Active:** The `systemd`--user managed Hermes gateway (PID `570025`) is still running.
 - [x] **Telegram/OpenClaw Responsive:** This connection remains active and responsive.
 - [x] **No Competing Processes:** No duplicate `hermes gateway` processes were found.
-- [x] **Dashboard Offline:** The web dashboard previously on `127.0.0.1:9119` is confirmed to be down, as expected.
+- [x] **Dashboard Offline:** The web dashboard previously on `127.0.0.1:8090` is confirmed to be down, as expected.
 
 ## Next Steps
 

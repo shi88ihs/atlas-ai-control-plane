@@ -9,7 +9,7 @@ The final cleanup of obsolete Docker-based Hermes components has been completed 
 
 ## 2. Actions Performed
 
-1.  **Backup `docker-compose.yml`:** The file at `/home/ec2-user/hermes-agent/docker-compose.yml` was backed up to `/opt/data/home/control-plane/backups/`.
+1.  **Backup `docker-compose.yml`:** The file at `/home/atlas-admin/hermes-agent/docker-compose.yml` was backed up to `/opt/data/home/control-plane/backups/`.
 2.  **Remove Docker Containers:** The stopped `hermes` and `hermes-dashboard` containers were removed.
     *   **Command:** `docker rm hermes hermes-dashboard`
 3.  **Remove Docker Image:** The `hermes-agent` image was removed as no other containers depended on it.
@@ -21,7 +21,7 @@ The final cleanup of obsolete Docker-based Hermes components has been completed 
 - [x] **No Conflict Errors:** Journal logs confirm that no new Telegram conflict errors have occurred since the obsolete components were removed.
 - [x] **Containers Removed:** `docker ps -a` confirms that the `hermes` and `hermes-dashboard` containers are no longer present.
 - [x] **Image Removed:** `docker images` confirms that the `hermes-agent` image has been removed.
-- [x] **Canonical Directories Intact:** The essential directories `/home/ec2-user/.hermes` (config/data) and `/home/ec2-user/hermes-agent` (install) are still present.
+- [x] **Canonical Directories Intact:** The essential directories `/home/atlas-admin/.hermes` (config/data) and `/home/atlas-admin/hermes-agent` (install) are still present.
 
 ## 4. Conclusion
 

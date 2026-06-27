@@ -2,13 +2,13 @@
 
 ## Current execution environment
 
-- Runtime user: `ec2-user`
-- Effective user: `ec2-user`
-- Current working directory: `/home/ec2-user`
-- Runtime HOME: `/home/ec2-user/.hermes/home`
-- Passwd home for `ec2-user`: `/home/ec2-user`
-- OS: Amazon Linux 2023
-- Kernel: `6.1.174-217.345.amzn2023.x86_64`
+- Runtime user: `atlas-admin`
+- Effective user: `atlas-admin`
+- Current working directory: `/home/atlas-admin`
+- Runtime HOME: `/home/atlas-admin/.hermes/home`
+- Passwd home for `atlas-admin`: `/home/atlas-admin`
+- OS: Linux server
+- Kernel: `redacted`
 - Architecture: `x86_64`
 - Init: `systemd`
 - PID 1: `systemd`
@@ -16,10 +16,10 @@
 ## SSH readiness
 
 - SSH client exists: yes (`/usr/bin/ssh`)
-- Runtime `~/.ssh` exists: no, because runtime HOME is `/home/ec2-user/.hermes/home`
-- Login-home `/home/ec2-user/.ssh` exists: yes
-- Login-home config exists: yes (`/home/ec2-user/.ssh/config`)
-- Login-home known_hosts exists: yes (`/home/ec2-user/.ssh/known_hosts`)
+- Runtime `~/.ssh` exists: no, because runtime HOME is `/home/atlas-admin/.hermes/home`
+- Login-home `/home/atlas-admin/.ssh` exists: yes
+- Login-home config exists: yes (`/home/atlas-admin/.ssh/config`)
+- Login-home known_hosts exists: yes (`/home/atlas-admin/.ssh/known_hosts`)
 - Future SSH inventory should live in the control-plane workspace, not inside either home directory
 
 ## Canonical Control Plane location

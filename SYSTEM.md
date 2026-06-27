@@ -7,18 +7,18 @@
 - The workspace is intentionally read-heavy and documentation-first; host-level changes remain outside this phase.
 
 ## Canonical installation
-- Hermes installation: `/home/ec2-user/hermes-agent`
-- Hermes configuration: `/home/ec2-user/.hermes`
+- Hermes installation: `/home/atlas-admin/hermes-agent`
+- Hermes configuration: `/home/atlas-admin/.hermes`
 - Control Plane root: `/opt/data/home/control-plane`
 - Reports: `/opt/data/home/control-plane/reports`
 
 ## Runtime
-- Current machine: `ip-172-31-0-144.ap-southeast-2.compute.internal`
-- Operating system: Amazon Linux 2023
-- Kernel: `6.1.174-217.345.amzn2023.x86_64`
+- Current machine: `atlas-server`
+- Operating system: Linux server
+- Kernel: `redacted`
 - Init system: systemd
 - Canonical runtime service: `hermes-gateway.service`
-- Service location: `/home/ec2-user/.config/systemd/user/hermes-gateway.service`
+- Service location: `/home/atlas-admin/.config/systemd/user/hermes-gateway.service`
 - Runtime model: long-lived user service, not a Docker-managed runtime
 
 ## Service ownership

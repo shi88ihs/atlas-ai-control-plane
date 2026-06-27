@@ -26,12 +26,12 @@ Phase 2 was completed inside the Hermes runtime user-space scope only. The reque
 
 - Directories: `0755`
 - Files: `0644`
-- Ownership after setup: `ec2-user:ec2-user`
+- Ownership after setup: `atlas-admin:atlas-admin`
 
 ## Runtime context
 
-- Current runtime user: `ec2-user`
-- Current working directory: `/home/ec2-user`
+- Current runtime user: `atlas-admin`
+- Current working directory: `/home/atlas-admin`
 
 ## Host-level change confirmation
 

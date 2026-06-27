@@ -1,6 +1,6 @@
-# Atlas Control Plane Architecture
+# Atlas AI Control Plane Architecture
 
-                 Atlas Control Plane
+                 Atlas AI Control Plane
                            │
  ┌───────────────┬───────────────┬───────────────┐
  │               │               │

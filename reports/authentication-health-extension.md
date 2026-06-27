@@ -44,14 +44,14 @@ A refreshed control-plane health report was also generated so the new checks app
 ## Validation results
 
 ### Google ADC
-- Credential file exists at `/home/ec2-user/.config/gcloud/application_default_credentials.json`
+- Credential file exists at `/home/atlas-admin/.config/gcloud/application_default_credentials.json`
 - `gcloud auth application-default print-access-token` failed
 - Result: **fail**
 - Recommended action: refresh Google ADC outside this check path if token acquisition is failing
 - Estimated impact: Vertex AI authentication cannot be validated until ADC token retrieval succeeds
 
 ### Vertex AI
-- Configuration file exists at `/home/ec2-user/.hermes/config.yaml`
+- Configuration file exists at `/home/atlas-admin/.hermes/config.yaml`
 - Vertex AI provider block is present
 - `x-goog-user-project` is present in the top-level model headers
 - ADC token acquisition failed, so API readiness could not be confirmed

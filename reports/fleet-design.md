@@ -110,10 +110,10 @@ Store the following per host:
   "host_id": "aws-control-01",
   "display_name": "AWS Control Host",
   "role": "aws-control",
-  "os": "Amazon Linux 2023",
+  "os": "Linux server",
   "architecture": "x86_64",
   "access_methods": ["ssh", "tailscale", "ssm"],
-  "primary_ip": "172.31.0.144",
+  "primary_ip": "10.0.0.10",
   "ssh_reachable": true,
   "tailscale_state": "active"
 }

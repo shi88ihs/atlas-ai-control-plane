@@ -1,6 +1,6 @@
-# Atlas Control Plane Workspace
+# Atlas AI Control Plane Workspace
 
-This directory is the user-space Atlas Control Plane for operations and infrastructure management. It is a working area for structured inventory, notes, logs, scripts, templates, and reports that support runtime automation without changing host-level configuration.
+This directory is the user-space Atlas AI Control Plane for operations and infrastructure management. It is a working area for structured inventory, notes, logs, scripts, templates, and reports that support runtime automation without changing host-level configuration.
 
 ## Directory guide
 

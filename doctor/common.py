@@ -5,12 +5,13 @@ from __future__ import annotations
 import os
 import shlex
 import subprocess
+import getpass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 ROOT = Path("/opt/data/home/control-plane")
-DEFAULT_HOME = Path("/home/ec2-user")
+DEFAULT_HOME = Path.home()
 GATEWAY_SERVICE = "hermes-gateway.service"
 
 
@@ -130,7 +131,7 @@ def gateway_service_context(service: str = GATEWAY_SERVICE) -> dict[str, Any]:
     )
     environment = _parse_environment(data.get("Environment", ""))
     home = environment.get("HOME") or str(DEFAULT_HOME)
-    user = environment.get("USER") or environment.get("LOGNAME") or "ec2-user"
+    user = environment.get("USER") or environment.get("LOGNAME") or getpass.getuser()
     logname = environment.get("LOGNAME") or user
     hermes_home = environment.get("HERMES_HOME") or str(Path(home) / ".hermes")
     path = environment.get("PATH") or os.environ.get("PATH") or "/usr/bin:/bin"

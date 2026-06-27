@@ -5,11 +5,12 @@ from __future__ import annotations
 import json
 import urllib.error
 import urllib.request
+import os
 from pathlib import Path
 
 from .common import iso_now, record, truncate
 
-CONFIG_PATH = Path("/home/ec2-user/.hermes/config.yaml")
+CONFIG_PATH = Path.home() / ".hermes/config.yaml"
 
 
 def _load_config() -> dict:

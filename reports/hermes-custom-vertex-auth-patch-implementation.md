@@ -32,8 +32,8 @@ Added a regression test that verifies:
 
 Backups were created before editing:
 
-- `/home/ec2-user/hermes-agent/.backup-20260626-121248/runtime_provider.py`
-- `/home/ec2-user/hermes-agent/.backup-20260626-121248/test_runtime_provider_resolution.py`
+- `/home/atlas-admin/hermes-agent/.backup-20260626-121248/runtime_provider.py`
+- `/home/atlas-admin/hermes-agent/.backup-20260626-121248/test_runtime_provider_resolution.py`
 
 ## Validation
 

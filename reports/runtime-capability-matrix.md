@@ -4,17 +4,17 @@
 
 - Operating system: Linux
 - Distribution: Amazon Linux
-- Version: Amazon Linux 2023
-- Kernel: `6.1.174-217.345.amzn2023.x86_64`
+- Version: Linux server
+- Kernel: `redacted`
 - Architecture: `x86_64`
 - Init system: `systemd`
 - PID 1: `systemd`
-- Current user: `ec2-user`
-- Effective user: `ec2-user`
-- Groups: `ec2-user`, `adm`, `wheel`, `systemd-journal`, `docker`
-- `HOME` environment variable: `/home/ec2-user/.hermes/home`
-- Passwd home for `ec2-user`: `/home/ec2-user`
-- Current working directory: `/home/ec2-user`
+- Current user: `atlas-admin`
+- Effective user: `atlas-admin`
+- Groups: `atlas-admin`, `adm`, `wheel`, `systemd-journal`, `docker`
+- `HOME` environment variable: `/home/atlas-admin/.hermes/home`
+- Passwd home for `atlas-admin`: `/home/atlas-admin`
+- Current working directory: `/home/atlas-admin`
 
 ## Runtime placement
 
@@ -82,13 +82,13 @@ Evidence indicates this process is running directly on the AWS host, not inside 
 ## SSH readiness
 
 - SSH client: **Verified Available** (`/usr/bin/ssh`)
-- Runtime `~/.ssh` under `/home/ec2-user/.hermes/home`: **missing**
-- Login-home `/home/ec2-user/.ssh`: **present**
-- Login-home `/home/ec2-user/.ssh/config`: **present**
-- Login-home `/home/ec2-user/.ssh/known_hosts`: **present**
+- Runtime `~/.ssh` under `/home/atlas-admin/.hermes/home`: **missing**
+- Login-home `/home/atlas-admin/.ssh`: **present**
+- Login-home `/home/atlas-admin/.ssh/config`: **present**
+- Login-home `/home/atlas-admin/.ssh/known_hosts`: **present**
 
 ## Notes
 
-- The runtime HOME (`/home/ec2-user/.hermes/home`) is different from the passwd home (`/home/ec2-user`).
+- The runtime HOME (`/home/atlas-admin/.hermes/home`) is different from the passwd home (`/home/atlas-admin`).
 - That mismatch matters for future SSH inventory and file-path assumptions.
 - No mutating actions were taken during discovery.

@@ -10,7 +10,7 @@ The live Hermes runtime and the Doctor are both pointing at the same Vertex-styl
 - model: `google/gemini-3.1-pro-preview`
 - project ID: `project-91c7cf5c-8b55-4f82-a17`
 - location: `global`
-- config file: `/home/ec2-user/.hermes/config.yaml`
+- config file: `/home/atlas-admin/.hermes/config.yaml`
 
 The live gateway logs show repeated **HTTP 401** failures against that same endpoint after the latest restart, with `ACCESS_TOKEN_TYPE_UNSUPPORTED` in the error details. That means the runtime failure is real.
 
@@ -24,15 +24,15 @@ The live gateway logs show repeated **HTTP 401** failures against that same endp
 Observed from `systemctl --user show hermes-gateway.service`:
 
 - `MainPID=652338`
-- `ExecStart=/home/ec2-user/hermes-agent/venv/bin/python -m hermes_cli.main gateway run`
-- `HERMES_HOME=/home/ec2-user/.hermes`
+- `ExecStart=/home/atlas-admin/hermes-agent/venv/bin/python -m hermes_cli.main gateway run`
+- `HERMES_HOME=/home/atlas-admin/.hermes`
 - `PATH` includes the Hermes venv and local node tools
-- `User=` is empty in the user unit output, but the runtime context is the `ec2-user` user session
+- `User=` is empty in the user unit output, but the runtime context is the `atlas-admin` user session
 - latest restart timestamp: `Fri 2026-06-26 10:14:22 UTC`
 
 ### Live Hermes runtime config
 
-Read from `/home/ec2-user/.hermes/config.yaml`.
+Read from `/home/atlas-admin/.hermes/config.yaml`.
 
 Live model block:
 
@@ -53,7 +53,7 @@ Additional provider block observed:
 
 Live runtime credential source appears to be:
 
-- **OAuth 2 access token** stored in the `api_key` field of `/home/ec2-user/.hermes/config.yaml`
+- **OAuth 2 access token** stored in the `api_key` field of `/home/atlas-admin/.hermes/config.yaml`
 - plus the `x-goog-user-project` header for quota/project association
 
 This is the credential source used by the live runtime path shown in the logs.
@@ -69,7 +69,7 @@ Doctor file inspected:
 The Doctor tests:
 
 - `endpoint = base_url + "/chat/completions"`
-- it reads the live `model` block from `/home/ec2-user/.hermes/config.yaml`
+- it reads the live `model` block from `/home/atlas-admin/.hermes/config.yaml`
 - it uses:
   - `provider`
   - `base_url`
@@ -173,7 +173,7 @@ Telegram log review in the same window did **not** show a live post-restart Tele
 
 Because this is a real runtime failure, the recommended actions are operational recovery steps, not a Doctor patch:
 
-1. Verify the bearer token source Hermes is using in `/home/ec2-user/.hermes/config.yaml`.
+1. Verify the bearer token source Hermes is using in `/home/atlas-admin/.hermes/config.yaml`.
 2. Replace or refresh that runtime token if it is stale or the wrong token type for Vertex AI Chat Completions.
 3. Confirm the `x-goog-user-project` value remains `project-91c7cf5c-8b55-4f82-a17`.
 4. If Hermes is intended to use the `providers.vertex-ai` block instead of the top-level `model` block, switch the runtime configuration to that provider path.
