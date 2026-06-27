@@ -120,7 +120,7 @@ Before editing, make backups of every touched file, for example:
 
 After patching, validate locally without restarting Hermes:
 
-- `python3 -m py_compile /home/atlas-admin/hermes-agent/agent/auxiliary_client.py /home/atlas-admin/hermes-agent/run_agent.py /home/atlas-admin/hermes-agent/hermes_cli/runtime_provider.py`
+- `python3 -m py_compile <install-path>/hermes-agent/agent/auxiliary_client.py <install-path>/hermes-agent/run_agent.py <install-path>/hermes-agent/hermes_cli/runtime_provider.py`
 - `control-plane doctor`
 - `control-plane status`
 - `control-plane report`

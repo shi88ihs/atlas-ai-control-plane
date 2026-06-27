@@ -1,8 +1,39 @@
 # Atlas AI Control Plane Workspace
 
-This directory is the user-space Atlas AI Control Plane for operations and infrastructure management. It is a working area for structured inventory, notes, logs, scripts, templates, and reports that support runtime automation without changing host-level configuration.
+Atlas AI Control Plane is an operations and infrastructure management platform designed to orchestrate, diagnose, and automate AI execution engines (like Hermes and OpenClaw) across varied deployment environments. It provides a structured, read-only coordination layer that abstracts host-level differences, offering a single pane of glass for health monitoring, deployment verification, and continuous operations.
 
-## Directory guide
+## What is Atlas?
+Atlas is the "Kubernetes for autonomous AI." It is the operational bridge between ambitious AI agents and strict enterprise infrastructure. 
+
+## Who is it for?
+- **Platform Engineers & MLOps:** Teams deploying autonomous AI agents that need a reliable, host-agnostic way to monitor and manage them.
+- **AI Developers:** Builders who want to separate their agent logic from their deployment operations.
+- **Enterprise Ops Teams:** Organizations requiring clear auditing, boundary enforcement, and predictable environments for LLM workloads.
+
+## Why does it exist?
+Deploying autonomous agents introduces unique challenges: they need dynamic execution environments and host integrations, but granting them too much privilege creates security risks. Atlas exists to provide bounded, secure execution environments without restricting the agent's utility.
+
+## What problems does it solve?
+- **Visibility:** Unifies telemetry and logs across discrete AI runtimes.
+- **Security Boundaries:** Enforces strict user-space isolation instead of root-level virtualization.
+- **Auditability:** Uses GitOps to create an immutable history of every infrastructure change.
+
+## How do I install it?
+Installation guides and setup prerequisites are detailed in the `docs/deployment/` directory.
+
+## How do I contribute?
+Check out `CONTRIBUTING.md` for guidelines on submitting Pull Requests, formatting code, and writing sanitized Markdown reports.
+
+## Where is the roadmap?
+The feature roadmap is located at `docs/development/roadmap.md`.
+
+## Where is the documentation?
+The primary documentation lives in the `docs/` folder:
+- `docs/architecture/` - System design and core features.
+- `docs/deployment/` - Deployment models and limits.
+- `docs/reports/` - Detailed technical analyses of system capabilities.
+
+## Directory Guide
 
 - `inventory/`
   - Purpose: tracked lists of runtime assets, endpoints, services, and references.
@@ -25,7 +56,7 @@ This directory is the user-space Atlas AI Control Plane for operations and infra
   - Do not store here: private keys, passphrases, or host SSH daemon configuration.
 
 - `scripts/`
-  - Purpose: user-space helper scripts for automation inside the Hermes runtime.
+  - Purpose: user-space helper scripts for automation inside the runtime.
   - Put here: shell scripts, Python utilities, one-off operational helpers.
   - Do not store here: privileged service scripts, package-manager hooks, or host boot scripts.
 
@@ -39,11 +70,6 @@ This directory is the user-space Atlas AI Control Plane for operations and infra
   - Put here: host profiles, connection metadata, role notes, boundary diagrams.
   - Do not store here: secrets, tokens, or direct credentials.
 
-- `reports/`
-  - Purpose: human-readable phase summaries and verification notes.
-  - Put here: setup reports, audit summaries, completed task writeups.
-  - Do not store here: raw dumps better suited for `logs/`.
-
 - `templates/`
   - Purpose: reusable document and config templates.
   - Put here: markdown templates, JSON templates, runbook skeletons.
@@ -54,25 +80,18 @@ This directory is the user-space Atlas AI Control Plane for operations and infra
   - Put here: session notes, checkpoints, in-progress task context.
   - Do not store here: permanent data that belongs in `inventory/` or `reports/`.
 
-## Boundary: container vs AWS host
+## Boundary: Container vs Deployment Environment
 
-- The AWS host is the machine running the Hermes runtime and its supporting infrastructure.
-- The Atlas Control Plane workspace is user-space data under `/opt/data/home/control-plane/`.
-- Files here should describe, coordinate, or support runtime work — not alter host networking, SSH, Tailscale, Docker, firewalling, gateway processes, or package state.
-- If a task requires host-level change, it must be handled separately and explicitly; this workspace is not the place to make those changes.
+- The deployment environment (e.g., cloud instance, bare metal) runs the AI runtime and supporting infrastructure.
+- The Atlas Control Plane workspace operates strictly in user-space.
+- Files here describe, coordinate, or support runtime work — they do not alter networking, SSH, VPNs, container engines, firewalling, or package state.
+- If a task requires host-level change, it must be handled separately and explicitly via approved orchestration tools; this workspace is exclusively for operations control.
 
-## Current known limitations
+## Atlas Control Plane CLI Wrapper
 
-- This is only a documentation and coordination layer; it does not execute privileged changes by itself.
-- Host-level state can still drift independently of these files.
-- Sensitive material must be kept out of this tree unless a task explicitly requires a secure handling path.
-- The workspace currently has no automation beyond the directory structure and documentation.
+The status engine offers a simple CLI wrapper for operational tasks:
 
-## Atlas Control Plane CLI wrapper
-
-The status engine now has a simple user-space wrapper at:
-
-- `/opt/data/home/control-plane/scripts/control-plane`
+- `./scripts/control-plane`
 
 Supported commands:
 
@@ -81,40 +100,3 @@ Supported commands:
 - `control-plane report`
 - `control-plane doctor`
 - `control-plane help`
-
-Optional manual shell helpers are shown below. These examples are for copy/paste only; they do not modify shell profiles automatically.
-
-### Bash
-
-```bash
-cp-status() {
-  /opt/data/home/control-plane/scripts/control-plane status
-}
-
-cp-report() {
-  /opt/data/home/control-plane/scripts/control-plane report
-}
-```
-
-### Fish
-
-```fish
-function cp-status
-    /opt/data/home/control-plane/scripts/control-plane status
-end
-
-function cp-report
-    /opt/data/home/control-plane/scripts/control-plane report
-end
-```
-
-## Next recommended phase
-
-Phase 3 should add structured runtime inventory and a small set of user-space helper scripts, then define a repeatable workflow for:
-
-1. recording host and container boundaries,
-2. collecting non-sensitive runtime status,
-3. storing phase reports,
-4. and preparing safe handoff artifacts for future work.
-
-Keep Phase 3 user-space only unless a separate host-level change is explicitly approved.

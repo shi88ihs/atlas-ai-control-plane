@@ -4,9 +4,9 @@
 
 - Runtime user: `atlas-admin`
 - Effective user: `atlas-admin`
-- Current working directory: `/home/atlas-admin`
-- Runtime HOME: `/home/atlas-admin/.hermes/home`
-- Passwd home for `atlas-admin`: `/home/atlas-admin`
+- Current working directory: `~`
+- Runtime HOME: `<config-dir>/.hermes/home`
+- Passwd home for `atlas-admin`: `~`
 - OS: Linux server
 - Kernel: `redacted`
 - Architecture: `x86_64`
@@ -16,10 +16,10 @@
 ## SSH readiness
 
 - SSH client exists: yes (`/usr/bin/ssh`)
-- Runtime `~/.ssh` exists: no, because runtime HOME is `/home/atlas-admin/.hermes/home`
-- Login-home `/home/atlas-admin/.ssh` exists: yes
-- Login-home config exists: yes (`/home/atlas-admin/.ssh/config`)
-- Login-home known_hosts exists: yes (`/home/atlas-admin/.ssh/known_hosts`)
+- Runtime `~/.ssh` exists: no, because runtime HOME is `<config-dir>/.hermes/home`
+- Login-home `~/.ssh` exists: yes
+- Login-home config exists: yes (`~/.ssh/config`)
+- Login-home known_hosts exists: yes (`~/.ssh/known_hosts`)
 - Future SSH inventory should live in the control-plane workspace, not inside either home directory
 
 ## Canonical Control Plane location

@@ -31,7 +31,7 @@ Phase 2 was completed inside the Hermes runtime user-space scope only. The reque
 ## Runtime context
 
 - Current runtime user: `atlas-admin`
-- Current working directory: `/home/atlas-admin`
+- Current working directory: `~`
 
 ## Host-level change confirmation
 

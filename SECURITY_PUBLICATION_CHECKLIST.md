@@ -5,11 +5,11 @@ Before committing any code or configuration to this public repository, verify th
 1. **IP Addresses:**
    - No public IPv4/IPv6 addresses that identify our servers.
    - No private/internal IP addresses (e.g., VPC networks, Docker bridge IPs) that map out our internal topology.
-   - Use safe placeholders like `203.0.113.10` (Public) or `10.0.0.10` (Private).
+   - Use safe placeholders like `203.0.113.10` (Public) or `<private-ip>` (Private).
 
 2. **Hostnames and Domains:**
    - No real server hostnames or domain names.
-   - Use safe placeholders like `atlas-server` or `atlas.example.com`.
+   - Use safe placeholders like `Atlas runtime` or `atlas.example.com`.
 
 3. **Cloud Infrastructure IDs:**
    - No AWS Account IDs.

@@ -1,24 +1,24 @@
 # Inventory
 
 ## Current machine
-- Hostname: `atlas-server`
+- Hostname: `Atlas runtime`
 - Runtime user: `atlas-admin`
 - Operating system: Linux server
 - Kernel: `redacted`
 - Architecture: `x86_64`
 - Init system: systemd
-- Working directory during discovery: `/home/atlas-admin`
+- Working directory during discovery: `~`
 
 ## Runtime
 - Canonical Hermes runtime: systemd-managed user service
 - Canonical service name: `hermes-gateway.service`
-- Service file: `/home/atlas-admin/.config/systemd/user/hermes-gateway.service`
+- Service file: `~/.config/systemd/user/hermes-gateway.service`
 - Current runtime state: active and running
 - Deployment model: local AWS host runtime, not Docker-canonical
 
 ## Hermes
-- Installation: `/home/atlas-admin/hermes-agent`
-- Configuration home: `/home/atlas-admin/.hermes`
+- Installation: `<install-path>/hermes-agent`
+- Configuration home: `<config-dir>/.hermes`
 - Gateway logs: `~/.hermes/logs/gateway.log`
 - Atlas Control Plane workspace: `/opt/data/home/control-plane`
 - Reports directory: `/opt/data/home/control-plane/reports`

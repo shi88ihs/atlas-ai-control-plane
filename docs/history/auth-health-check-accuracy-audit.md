@@ -20,12 +20,12 @@ Rules honored:
 
 - `hermes-gateway.service` is running as the `atlas-admin` account.
 - Service environment shows:
-  - `HOME=/home/atlas-admin`
+  - `HOME=~`
   - `USER=atlas-admin`
   - `LOGNAME=atlas-admin`
-  - `HERMES_HOME=/home/atlas-admin/.hermes`
+  - `HERMES_HOME=<config-dir>/.hermes`
 - The gateway has a single live process:
-  - `652338 /home/atlas-admin/hermes-agent/venv/bin/python -m hermes_cli.main gateway run`
+  - `652338 <install-path>/hermes-agent/venv/bin/python -m hermes_cli.main gateway run`
 - Latest gateway restart was at:
   - `2026-06-26T10:14:22+0000`
 
@@ -34,15 +34,15 @@ Rules honored:
 ### What was checked
 
 - ADC credential file path:
-  - `/home/atlas-admin/.config/gcloud/application_default_credentials.json`
+  - `~/.config/gcloud/application_default_credentials.json`
 - Same-user token acquisition test in the service home context:
-  - `HOME=/home/atlas-admin ... gcloud auth application-default print-access-token`
+  - `HOME=~ ... gcloud auth application-default print-access-token`
   - result: success (`rc=0`)
 
 ### Conclusion
 
 - **Current health-check result:** false positive in the audit shell context
-- **Reason:** the check depends on the environment it is executed in. When forced into the gateway service home context (`HOME=/home/atlas-admin`), token acquisition succeeds.
+- **Reason:** the check depends on the environment it is executed in. When forced into the gateway service home context (`HOME=~`), token acquisition succeeds.
 
 ### Notes
 
@@ -127,7 +127,7 @@ Post-restart gateway logs still show authentication failures on the active runti
 ### 1) `doctor/google_adc.py`
 
 - Force the token-acquisition subprocess to run with the gateway service home context.
-- Set `HOME=/home/atlas-admin` and related identity variables for the `gcloud` subprocess, or derive the target home from the gateway service environment.
+- Set `HOME=~` and related identity variables for the `gcloud` subprocess, or derive the target home from the gateway service environment.
 - Keep token output suppressed.
 - Preserve the existing success/failure-only reporting.
 

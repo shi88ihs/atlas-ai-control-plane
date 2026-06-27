@@ -1,52 +1,32 @@
-# System
+# System Overview
 
 ## Architecture
-- The canonical Hermes runtime is the systemd-managed gateway running on the AWS host.
-- The duplicate Docker deployment has been removed and is no longer the source of truth.
-- The Atlas Control Plane in this workspace is a user-space documentation and coordination layer for long-term operations.
-- The workspace is intentionally read-heavy and documentation-first; host-level changes remain outside this phase.
+- The canonical AI runtime runs as a secure, systemd-managed gateway on the primary deployment host.
+- Historical containerized variants (e.g. Docker deployments) have been deprecated to unify the process boundary under a single source of truth.
+- The Atlas AI Control Plane provides a user-space documentation and operations coordination layer, enabling long-term fleet management.
+- The workspace enforces a read-heavy, diagnostic-first approach; host-level mutations remain outside this operational plane to guarantee stability.
 
-## Canonical installation
-- Hermes installation: `/home/atlas-admin/hermes-agent`
-- Hermes configuration: `/home/atlas-admin/.hermes`
-- Control Plane root: `/opt/data/home/control-plane`
-- Reports: `/opt/data/home/control-plane/reports`
-
-## Runtime
-- Current machine: `atlas-server`
-- Operating system: Linux server
-- Kernel: `redacted`
-- Init system: systemd
+## Core Services
 - Canonical runtime service: `hermes-gateway.service`
-- Service location: `/home/atlas-admin/.config/systemd/user/hermes-gateway.service`
-- Runtime model: long-lived user service, not a Docker-managed runtime
+- Runtime execution model: long-lived user service, providing deep host integration without requiring root privileges.
+- Atlas Control Plane tracks configuration state but does not directly modify system binaries or package management.
 
-## Service ownership
-- Hermes gateway ownership belongs to the Hermes runtime operator through the user-level systemd service.
-- Atlas Control Plane documents the runtime and records procedures; it does not own host system configuration.
-- OpenClaw remains a separate operational concern and should not be conflated with Hermes gateway ownership.
+## Operations Ownership
+- Atlas AI Control Plane records procedures, tracks telemetry, and manages orchestration scripts.
+- The lifecycle authority (start/stop/restart) for the AI runtimes belongs to the runtime operator.
+- Auxiliary AI runtimes (like OpenClaw) remain operationally adjacent and are managed as independent entities under the Atlas umbrella.
 
-## Data locations
-- Primary Atlas Control Plane documents: `/opt/data/home/control-plane/`
-- Inventory material: `/opt/data/home/control-plane/inventory/` when created
-- Reports: `/opt/data/home/control-plane/reports/`
-- Backups and snapshots for Atlas Control Plane artifacts: `/opt/data/home/control-plane/backups/`
-- Workspace notes and helper material should remain in user-space, not in system directories.
+## Data Structure
+- **Control Plane Root:** `/opt/data/home/control-plane`
+- **Reports:** `/opt/data/home/control-plane/reports`
+- **Backups:** `/opt/data/home/control-plane/backups/`
+- Workspace configuration files and diagnostic helpers remain in user-space to avoid polluting system directories.
 
-## Logs
-- Hermes gateway logs: `~/.hermes/logs/gateway.log`
-- Systemd journal for the user service: `journalctl --user -u hermes-gateway`
-- Host service logs and daemon logs should be treated as separate from Atlas Control Plane documentation.
-- Any operational note captured here should link to evidence, not duplicate secrets or raw sensitive payloads.
+## Observability
+- AI runtime gateway logs are tracked per component.
+- Systemd journals are used as the primary source of operational event logs.
+- Atlas Control Plane explicitly decouples its documentation layer from host daemon logs to prevent credential or sensitive data leakage in phase reports.
 
-## Restart ownership
-- Restart authority for the canonical Hermes gateway belongs to the runtime operator.
-- The approved logical restart target is the user service `hermes-gateway.service`.
-- This phase does not change restart policy or service configuration.
-- No restart should be attempted from Atlas Control Plane without explicit operational approval and a verified reason.
- 
- ## Backup locations
- - Atlas Control Plane artifact backups: `/opt/data/home/control-plane/backups/`
-- Human-readable phase reports: `/opt/data/home/control-plane/reports/`
-- Any future inventory exports or snapshots should be copied into the workspace backup area before being treated as durable records.
-- Host-level backups remain outside this documentation layer.
+## Lifecycle Policy
+- The logical restart target for the primary AI engine is `hermes-gateway.service`.
+- Atlas Control Plane mandates that no restart occurs without explicit operational approval and a captured diagnostic baseline.
