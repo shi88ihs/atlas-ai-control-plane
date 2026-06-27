@@ -1,6 +1,21 @@
-# Atlas AI Control Plane Workspace
+# Atlas AI Control Plane
 
-Atlas AI Control Plane is an operations and infrastructure management platform designed to orchestrate, diagnose, and automate AI execution engines (like Hermes and OpenClaw) across varied deployment environments. It provides a structured, read-only coordination layer that abstracts host-level differences, offering a single pane of glass for health monitoring, deployment verification, and continuous operations.
+**AI Infrastructure • Mission Control • Self-Hosted Agents • AWS • Docker • Automation**
+
+![Atlas AI Control Plane](assets/atlas-banner.jpg)
+
+Atlas is a self-hosted AI automation platform that combines Hermes, OpenClaw, Docker services, Mission Control, AWS infrastructure, and cloud automation into a single operational control plane.
+
+### Core capabilities include:
+- AI agent orchestration
+- Mission Control dashboard
+- AWS infrastructure management
+- Docker service management
+- Vaultwarden integration
+- Telegram gateway
+- Production deployment tooling
+- Release management
+- Infrastructure automation
 
 ## What is Atlas?
 Atlas is the "Kubernetes for autonomous AI." It is the operational bridge between ambitious AI agents and strict enterprise infrastructure. 
