@@ -18,6 +18,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Structured Markdown reporting for deployment verification.
 - Read-only diagnostics via Atlas Doctor.
 
+## [0.9.1] - 2026-06-27
+### Added
+- **Infrastructure Stabilization Release**
+- Mission Control dashboard.
+- Atlas documentation restructure.
+- AWS Manager skill draft.
+- Memory optimization profile.
+- Backup and release workflow.
+- Production web stack prepared.
+- Vaultwarden migration prepared.
+- Caddy reverse proxy configuration prepared.
+
+### Known Outstanding Work
+- Final Caddy production cutover.
+- HTTPS certificate verification.
+- Public website deployment.
+- Vultr retirement after monitoring.
+
 ## [0.9.0] - 2026-06-27
 ### Added
 - **Internal Development Release**
