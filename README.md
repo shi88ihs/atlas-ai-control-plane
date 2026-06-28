@@ -2,7 +2,7 @@
 
 **AI Infrastructure • Mission Control • Self-Hosted Agents • AWS • Docker • Automation**
 
-![Atlas AI Control Plane](assets/atlas-banner.jpg)
+![Atlas AI Control Plane](docs/images/atlas-banner.jpg)
 
 Atlas is a self-hosted AI automation platform that combines Hermes, OpenClaw, Docker services, Mission Control, AWS infrastructure, and cloud automation into a single operational control plane.
 
